@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
 import ProjectList from './components/ProjectList';
+import ProjectDetail from './components/ProjectDetail';
+import { Route } from 'react-router-dom';
 
 class App extends Component {
 	state = {
@@ -26,7 +28,9 @@ class App extends Component {
 			<div className="App">
 				<h1 style={{ textAlign: 'center' }}>Test Endpoints</h1>
 
-				<ProjectList projects={this.state.projects} />
+				<Route exact path="/" render={(props) => <ProjectList {...props} projects={this.state.projects} />} />
+
+				<Route path="/project/:id" component={ProjectDetail} />
 			</div>
 		);
 	}

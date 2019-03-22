@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const ProjectList = (props) => {
 	//console.log(props);
@@ -9,7 +10,7 @@ const ProjectList = (props) => {
 			<Container>
 				{props.projects.map((project) => {
 					return (
-						<ProjectWrapper key={project.id}>
+						<ProjectWrapper key={project.id} to={`/project/${project.id}`}>
 							<h2>{project.name}</h2>
 							<p>Description: {project.description}</p>
 						</ProjectWrapper>
@@ -22,7 +23,7 @@ const ProjectList = (props) => {
 
 export default ProjectList;
 
-const ProjectWrapper = styled.div`
+const ProjectWrapper = styled(Link)`
 	border: 1px solid black;
 	width: 400px;
 	padding: 20px;
