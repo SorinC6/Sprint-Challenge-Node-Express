@@ -1,5 +1,6 @@
 const express = require('express');
 const helmet = require('helmet');
+const cors = require('cors');
 
 //importing routes
 const ActionRoutes = require('./routes/actionsRouter');
@@ -7,6 +8,7 @@ const ProjectRoutes = require('./routes/projectsRouter');
 
 const server = express();
 server.use(express.json());
+server.use(cors());
 server.use(helmet());
 
 //using routes

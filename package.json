@@ -19,6 +19,8 @@
 	},
 	"homepage": "https://github.com/LambdaSchool/Sprint-Challenge-Node-Express#readme",
 	"dependencies": {
+		"axios": "^0.18.0",
+		"cors": "^2.8.5",
 		"dotenv": "^7.0.0",
 		"express": "^4.16.4",
 		"helmet": "^3.16.0",
