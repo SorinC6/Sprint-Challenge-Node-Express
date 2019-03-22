@@ -9,7 +9,7 @@ server.use(express.json());
 server.use(helmet());
 
 //using routes
-server.use(ActionRoutes);
+server.use('/api/actions', ActionRoutes);
 
 server.get('/', (req, res) => {
 	res.send('<h1>Hello from the Server</h1>');
