@@ -29,4 +29,19 @@ projectRoute.get('/:id', async (req, res) => {
 	}
 });
 
+projectRoute.post('/', async (req, res) => {
+	const project = req.body;
+
+	if (project.name && project.description) {
+		const result = await projectDb.insert(project);
+		try {
+			res.status(201).json(result);
+		} catch (error) {
+			res.status(500).json({ error: ' error while saving the project to database' });
+		}
+	} else {
+		res.status(400).json({ error: 'Please provide name and description for the project' });
+	}
+});
+
 module.exports = projectRoute;
