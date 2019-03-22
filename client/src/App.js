@@ -12,7 +12,7 @@ class App extends Component {
 		axios
 			.get('http://localhost:4000/api/projects/')
 			.then((res) => {
-				console.log(res.data);
+				//console.log(res.data);
 				this.setState({
 					projects: res.data
 				});
