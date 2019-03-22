@@ -79,5 +79,19 @@ projectRoute.put('/:id', async (req, res) => {
 	}
 });
 
+projectRoute.get('/:id/actions', async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		const projectActions = await projectDb.getProjectActions(id);
+		if (projectActions.length) {
+			res.status(200).json(projectActions);
+		} else {
+			res.status(404).json({ message: 'the project with specified id does not exists' });
+		}
+	} catch (error) {
+		res.status(500).json({ error: 'The information could not be retrived' });
+	}
+});
 
 module.exports = projectRoute;
