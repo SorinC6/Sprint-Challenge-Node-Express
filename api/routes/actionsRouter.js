@@ -48,4 +48,18 @@ actionRoute.post('/', async (req, res) => {
 	}
 });
 
+actionRoute.delete('/:id', async (req, res) => {
+	const { id } = req.params;
+	try {
+		const action = await actionDb.remove(id);
+		if (action) {
+			res.status(200).json(action);
+		} else {
+			res.status(404).json({ message: 'The action with specified ID does not exists' });
+		}
+	} catch (error) {
+		res.status(500).json({ error: 'the action coud not ne removed' });
+	}
+});
+
 module.exports = actionRoute;
