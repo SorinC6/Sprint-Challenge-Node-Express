@@ -1,14 +1,25 @@
 import React, { Component } from 'react';
 import './App.css';
+import axios from 'axios';
 
 class App extends Component {
 	state = {
 		projects: []
-  };
-  
-  componentDidMount(){
-    
-  }
+	};
+
+	componentWillMount() {
+		axios
+			.get('http://localhost:4000/api/projects/')
+			.then((res) => {
+				console.log(res.data);
+				this.setState({
+					projects: res.data
+				});
+			})
+			.catch();
+	}
+
+	componentDidMount() {}
 	render() {
 		return (
 			<div className="App">
