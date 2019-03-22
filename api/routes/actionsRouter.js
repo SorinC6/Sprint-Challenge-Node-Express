@@ -62,4 +62,27 @@ actionRoute.delete('/:id', async (req, res) => {
 	}
 });
 
+actionRoute.put('/:id', async (req, res) => {
+	const { id } = req.params;
+	const action = req.body;
+
+	if (action.project_id && action.description && action.notes) {
+		try {
+			const result = await actionDb.update(id, action);
+
+			if (result) {
+				res.status(200).json(result);
+			} else {
+				res.status(404).json({
+					message: 'The action with sepcified ID does not exists'
+				});
+			}
+		} catch (error) {
+			res.status(500).json({ error: 'The action could not be modified' });
+		}
+	} else {
+		res.status(400).json({ error: 'Please provide id , description and notes for the action' });
+	}
+});
+
 module.exports = actionRoute;
