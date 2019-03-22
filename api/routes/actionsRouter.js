@@ -33,6 +33,19 @@ actionRoute.get('/:id', (req, res) => {
 		});
 });
 
+actionRoute.post('/', async (req, res) => {
+	const action = req.body;
 
+	if (action.project_id && action.description && action.notes) {
+		try {
+			const result = await actionDb.insert(action);
+			res.status(201).json(result);
+		} catch (error) {
+			res.status(500).json({ error: 'There was an error while saving the action to the database' });
+		}
+	} else {
+		res.status(400).json({ error: 'please provide id , action or body for the action ' });
+	}
+});
 
 module.exports = actionRoute;
