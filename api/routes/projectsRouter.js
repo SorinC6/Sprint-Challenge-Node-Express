@@ -44,4 +44,19 @@ projectRoute.post('/', async (req, res) => {
 	}
 });
 
+projectRoute.delete('/:id', async (req, res) => {
+	const { id } = req.params;
+
+	try {
+		const result = await projectDb.remove(id);
+		result
+			? res.status(200).json(result)
+			: res.status(404).json({
+					message: 'the project with specified id does not exists'
+				});
+	} catch (error) {
+		res.status(500).json({ error: 'the project could not be removed' });
+	}
+});
+
 module.exports = projectRoute;
